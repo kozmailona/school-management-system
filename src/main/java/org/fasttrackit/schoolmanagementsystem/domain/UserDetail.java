@@ -8,11 +8,11 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
-public class UserDetails {
+public class UserDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @NotNull
     private String name;
@@ -30,7 +30,7 @@ public class UserDetails {
     private int age;
     private String imageUrl;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

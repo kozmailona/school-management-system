@@ -5,36 +5,41 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 public class UserDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @NotNull
     private String name;
+
+    @NotNull
     private String gender;
 
     @NotNull
     private String phoneNumber;
+
+    @NotNull
     private String emailAddress;
 
     @NotNull
     private long registrationNumber;
-    private LocalDate birthday;
+
+    @NotNull
+    private Date birthday;
 
     @NotNull
     private int age;
-    private String imageUrl;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -78,11 +83,11 @@ public class UserDetail {
         this.registrationNumber = registrationNumber;
     }
 
-    public LocalDate getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(LocalDate birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 
@@ -92,14 +97,6 @@ public class UserDetail {
 
     public void setAge(int age) {
         this.age = age;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
     }
 
     @Override
@@ -113,7 +110,6 @@ public class UserDetail {
                 ", registrationNumber=" + registrationNumber +
                 ", birthday=" + birthday +
                 ", age=" + age +
-                ", imageUrl='" + imageUrl + '\'' +
                 '}';
     }
 }

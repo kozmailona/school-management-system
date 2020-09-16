@@ -1,24 +1,29 @@
 package org.fasttrackit.schoolmanagementsystem.transfer;
 
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
+import java.util.Date;
 
 public class SaveUserDetailRequest {
     @NotNull
     private String name;
+
+    @NotNull
     private String gender;
 
     @NotNull
     private String phoneNumber;
+
+    @NotNull
     private String emailAddress;
 
     @NotNull
     private long registrationNumber;
-    private LocalDate birthday;
+
+    @NotNull
+    private Date birthday;
 
     @NotNull
     private int age;
-    private String imageUrl;
 
     public String getName() {
         return name;
@@ -60,11 +65,11 @@ public class SaveUserDetailRequest {
         this.registrationNumber = registrationNumber;
     }
 
-    public LocalDate getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(LocalDate birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 
@@ -74,14 +79,6 @@ public class SaveUserDetailRequest {
 
     public void setAge(int age) {
         this.age = age;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
     }
 
     @Override
@@ -94,7 +91,6 @@ public class SaveUserDetailRequest {
                 ", registrationNumber=" + registrationNumber +
                 ", birthday=" + birthday +
                 ", age=" + age +
-                ", imageUrl='" + imageUrl + '\'' +
                 '}';
     }
 }

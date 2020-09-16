@@ -1,6 +1,5 @@
 package org.fasttrackit.schoolmanagementsystem.service;
 
-import org.apache.catalina.User;
 import org.fasttrackit.schoolmanagementsystem.domain.UserDetail;
 import org.fasttrackit.schoolmanagementsystem.persistence.UserDetailRepository;
 import org.fasttrackit.schoolmanagementsystem.transfer.SaveUserDetailRequest;
@@ -20,7 +19,7 @@ public class UserDetailService {
         this.userDetailRepository = userDetailRepository;
     }
 
-    public User createUser(SaveUserDetailRequest request) {
+    public UserDetail createUser(SaveUserDetailRequest request) {
 
         LOGGER.info("Creating user {}", request);
         UserDetail userDetail = new UserDetail();
@@ -29,11 +28,10 @@ public class UserDetailService {
         userDetail.setBirthday(request.getBirthday());
         userDetail.setEmailAddress(request.getEmailAddress());
         userDetail.setGender(request.getGender());
-        userDetail.setImageUrl(request.getImageUrl());
         userDetail.setPhoneNumber(request.getPhoneNumber());
         userDetail.setRegistrationNumber(request.getRegistrationNumber());
 
-        return (User) userDetailRepository.save(userDetail);
+        return userDetailRepository.save(userDetail);
     }
 
 }

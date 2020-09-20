@@ -1,96 +1,106 @@
 package org.fasttrackit.schoolmanagementsystem.transfer;
 
-import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
+
+import javax.validation.constraints.NotNull;
+
+import org.fasttrackit.schoolmanagementsystem.domain.SubjectInfo;
 
 public class SaveUserDetailRequest {
-    @NotNull
-    private String name;
+	@NotNull
+	private String name;
 
-    @NotNull
-    private String gender;
+	@NotNull
+	private String gender;
 
-    @NotNull
-    private String phoneNumber;
+	@NotNull
+	private String phoneNumber;
 
-    @NotNull
-    private String emailAddress;
+	@NotNull
+	private String emailAddress;
 
-    @NotNull
-    private long registrationNumber;
+	@NotNull
+	private long registrationNumber;
 
-    @NotNull
-    private Date birthday;
+	@NotNull
+	private Date birthday;
 
-    @NotNull
-    private int age;
+	@NotNull
+	private int age;
 
-    public String getName() {
-        return name;
-    }
+	@NotNull
+	private List<SubjectInfo> subjectInfo;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getGender() {
-        return gender;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
+	public String getGender() {
+		return gender;
+	}
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
 
-    public String getEmailAddress() {
-        return emailAddress;
-    }
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
+	public String getEmailAddress() {
+		return emailAddress;
+	}
 
-    public long getRegistrationNumber() {
-        return registrationNumber;
-    }
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
 
-    public void setRegistrationNumber(long registrationNumber) {
-        this.registrationNumber = registrationNumber;
-    }
+	public long getRegistrationNumber() {
+		return registrationNumber;
+	}
 
-    public Date getBirthday() {
-        return birthday;
-    }
+	public void setRegistrationNumber(long registrationNumber) {
+		this.registrationNumber = registrationNumber;
+	}
 
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
+	public Date getBirthday() {
+		return birthday;
+	}
 
-    public int getAge() {
-        return age;
-    }
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
 
-    public void setAge(int age) {
-        this.age = age;
-    }
+	public int getAge() {
+		return age;
+	}
 
-    @Override
-    public String toString() {
-        return "SaveUserDetailRequest{" +
-                "name='" + name + '\'' +
-                ", gender='" + gender + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", emailAddress='" + emailAddress + '\'' +
-                ", registrationNumber=" + registrationNumber +
-                ", birthday=" + birthday +
-                ", age=" + age +
-                '}';
-    }
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public List<SubjectInfo> getSubjectInfo() {
+		return subjectInfo;
+	}
+
+	public void setSubjectInfo(List<SubjectInfo> subjectInfo) {
+		this.subjectInfo = subjectInfo;
+	}
+
+	@Override
+	public String toString() {
+		return "SaveUserDetailRequest [name=" + name + ", gender=" + gender + ", phoneNumber=" + phoneNumber
+				+ ", emailAddress=" + emailAddress + ", registrationNumber=" + registrationNumber + ", birthday="
+				+ birthday + ", age=" + age + ", subjectInfo=" + subjectInfo + "]";
+	}
+
 }

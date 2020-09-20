@@ -2,27 +2,25 @@ package org.fasttrackit.schoolmanagementsystem.domain;
 
 public class Grade {
 
-    private int id;
+    private Long id;
+    
     private int grade;
 
-    public Grade(int id, int grade) {
-        this.id = id;
-        this.grade = grade;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public int getId() {
-        return id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public int getGrade() {
+		return grade;
+	}
 
-    public int getGrade() {
-        return grade;
-    }
-
-    public void setGrade(int grade) {
-        this.grade = grade;
-    }
+	public void setGrade(int grade) {
+		this.grade = grade;
+	}
+    
+    
 }

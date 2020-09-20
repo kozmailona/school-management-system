@@ -5,6 +5,7 @@ import java.util.Date;
 public class Attendance {
 
     private boolean isPresent;
+    
     private Date date;
 
     public Attendance(boolean isPresent, Date date) {
@@ -27,4 +28,5 @@ public class Attendance {
     public void setDate(Date date) {
         this.date = date;
     }
+    
 }

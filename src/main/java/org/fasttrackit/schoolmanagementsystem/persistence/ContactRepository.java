@@ -1,4 +1,7 @@
 package org.fasttrackit.schoolmanagementsystem.persistence;
 
-public interface ContactRepository {
+import org.fasttrackit.schoolmanagementsystem.domain.Contact;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ContactRepository extends JpaRepository<Contact, String> {
 }

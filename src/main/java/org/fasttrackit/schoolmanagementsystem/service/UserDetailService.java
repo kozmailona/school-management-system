@@ -1,5 +1,6 @@
 package org.fasttrackit.schoolmanagementsystem.service;
 
+import org.fasttrackit.schoolmanagementsystem.domain.Teacher;
 import org.fasttrackit.schoolmanagementsystem.domain.UserDetail;
 import org.fasttrackit.schoolmanagementsystem.persistence.UserDetailRepository;
 import org.fasttrackit.schoolmanagementsystem.transfer.SaveUserDetailRequest;
@@ -22,7 +23,7 @@ public class UserDetailService {
     public UserDetail createUser(SaveUserDetailRequest request) {
 
         LOGGER.info("Creating user {}", request);
-        UserDetail userDetail = new UserDetail();
+        UserDetail userDetail = new Teacher();
         userDetail.setName(request.getName());
         userDetail.setAge(request.getAge());
         userDetail.setBirthday(request.getBirthday());

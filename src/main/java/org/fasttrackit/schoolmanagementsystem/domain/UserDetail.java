@@ -1,51 +1,46 @@
 package org.fasttrackit.schoolmanagementsystem.domain;
 
-import java.util.Date;
-import java.util.List;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
-@Table(name = "users")
-public abstract class UserDetail {
+//@Table(name = "users")
+public class UserDetail {
 
 	@Id
-	@Column(name = "id", unique = true)
+	//@Column(name = "id", unique = true)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@NotNull
-	@Column(name = "name")
+	//@Column(name = "name")
 	private String name;
 
 	@NotNull
-	@Column(name = "phoneNumber", unique = true)
+	//@Column(name = "phoneNumber", unique = true)
 	private String phoneNumber;
 
 	@NotNull
-	@Column(name = "email", unique = true)
+	//@Column(name = "email", unique = true)
 	private String emailAddress;
 
+	private String role;
+
 	@NotNull
-	@Column(name = "regNumber")
+	//@Column(name = "regNumber")
 	private long registrationNumber;
 
 	@NotNull
-	@Column(name = "birthday")
+	//@Column(name = "birthday")
 	private Date birthday;
 
 	@NotNull
-	@Column(name = "age")
+	//@Column(name = "age")
 	private int age;
-
-	@NotNull
-	private List<SubjectInfo> subjectInfo;
 
 	public Long getId() {
 		return id;
@@ -74,9 +69,20 @@ public abstract class UserDetail {
 	public String getEmailAddress() {
 		return emailAddress;
 	}
+	public UserDetail() {
+		this.role = role;
+	}
 
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public long getRegistrationNumber() {
@@ -103,19 +109,21 @@ public abstract class UserDetail {
 		this.age = age;
 	}
 
-	public List<SubjectInfo> getSubjectInfo() {
-		return subjectInfo;
-	}
+	@NotNull
+	//private List<SubjectInfo> subjectInfo;
 
-	public void setSubjectInfo(List<SubjectInfo> subjectInfo) {
-		this.subjectInfo = subjectInfo;
-	}
+
 
 	@Override
 	public String toString() {
-		return "UserDetail [id=" + id + ", name=" + name + ", gender=" + ", phoneNumber=" + phoneNumber
-				+ ", emailAddress=" + emailAddress + ", registrationNumber=" + registrationNumber + ", birthday="
-				+ birthday + ", age=" + age + ", subjectInfo=" + subjectInfo + "]";
+		return "UserDetail{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", phoneNumber='" + phoneNumber + '\'' +
+				", emailAddress='" + emailAddress + '\'' +
+				", registrationNumber=" + registrationNumber +
+				", birthday=" + birthday +
+				", age=" + age +
+				'}';
 	}
-
 }

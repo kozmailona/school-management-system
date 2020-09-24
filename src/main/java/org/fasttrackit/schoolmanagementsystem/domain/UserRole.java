@@ -1,6 +1,6 @@
 package org.fasttrackit.schoolmanagementsystem.domain;
 
-public class Student extends UserDetail{
+public enum UserRole {
+    TEACHER,
+    SRUDENT;
 }
-
-

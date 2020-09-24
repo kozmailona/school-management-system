@@ -2,7 +2,7 @@ package org.fasttrackit.schoolmanagementsystem.service;
 
 import org.fasttrackit.schoolmanagementsystem.domain.UserDetail;
 import org.fasttrackit.schoolmanagementsystem.persistence.UserDetailRepository;
-import org.fasttrackit.schoolmanagementsystem.transfer.SaveUserDetailRequest;
+import org.fasttrackit.schoolmanagementsystem.transfer.user.SaveUserDetailRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

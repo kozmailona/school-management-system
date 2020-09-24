@@ -1,11 +1,10 @@
-package org.fasttrackit.schoolmanagementsystem.transfer;
-
-import java.util.Date;
-import java.util.List;
-
-import javax.validation.constraints.NotNull;
+package org.fasttrackit.schoolmanagementsystem.transfer.user;
 
 import org.fasttrackit.schoolmanagementsystem.domain.SubjectInfo;
+
+import javax.validation.constraints.NotNull;
+import java.util.Date;
+import java.util.List;
 
 public class SaveUserDetailRequest {
 	@NotNull

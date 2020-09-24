@@ -15,7 +15,7 @@ import org.fasttrackit.schoolmanagementsystem.domain.SubjectInfo;
 import org.fasttrackit.schoolmanagementsystem.domain.SubjectName;
 import org.fasttrackit.schoolmanagementsystem.domain.UserDetail;
 import org.fasttrackit.schoolmanagementsystem.service.UserDetailService;
-import org.fasttrackit.schoolmanagementsystem.transfer.SaveUserDetailRequest;
+import org.fasttrackit.schoolmanagementsystem.transfer.user.SaveUserDetailRequest;
 import org.joda.time.DateMidnight;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

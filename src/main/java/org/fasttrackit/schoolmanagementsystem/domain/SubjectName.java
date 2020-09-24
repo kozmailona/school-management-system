@@ -10,5 +10,4 @@ public enum SubjectName {
 	GEOGRAPHY,
 	ROMANIAN,
 	ARTS
-
 }

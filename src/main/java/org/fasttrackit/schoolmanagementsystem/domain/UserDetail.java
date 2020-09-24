@@ -28,6 +28,8 @@ public class UserDetail {
 	//@Column(name = "email", unique = true)
 	private String emailAddress;
 
+	private String password;
+
 	private String role;
 
 	@NotNull
@@ -41,6 +43,18 @@ public class UserDetail {
 	@NotNull
 	//@Column(name = "age")
 	private int age;
+
+	public UserDetail() {
+		this.id = id;
+		this.name = name;
+		this.phoneNumber = phoneNumber;
+		this.emailAddress = emailAddress;
+		this.password = password;
+		this.role = role;
+		this.registrationNumber = registrationNumber;
+		this.birthday = birthday;
+		this.age = age;
+	}
 
 	public Long getId() {
 		return id;
@@ -69,12 +83,17 @@ public class UserDetail {
 	public String getEmailAddress() {
 		return emailAddress;
 	}
-	public UserDetail() {
-		this.role = role;
-	}
 
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getRole() {
@@ -109,11 +128,6 @@ public class UserDetail {
 		this.age = age;
 	}
 
-	@NotNull
-	//private List<SubjectInfo> subjectInfo;
-
-
-
 	@Override
 	public String toString() {
 		return "UserDetail{" +
@@ -121,6 +135,8 @@ public class UserDetail {
 				", name='" + name + '\'' +
 				", phoneNumber='" + phoneNumber + '\'' +
 				", emailAddress='" + emailAddress + '\'' +
+				", password='" + password + '\'' +
+				", role='" + role + '\'' +
 				", registrationNumber=" + registrationNumber +
 				", birthday=" + birthday +
 				", age=" + age +

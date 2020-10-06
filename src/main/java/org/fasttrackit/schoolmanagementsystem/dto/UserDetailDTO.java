@@ -1,97 +1,100 @@
 package org.fasttrackit.schoolmanagementsystem.dto;
 
 import java.util.Date;
+import java.util.List;
+
+import org.fasttrackit.schoolmanagementsystem.domain.SubjectInfo;
+import org.fasttrackit.schoolmanagementsystem.domain.UserRole;
 
 public class UserDetailDTO {
 
+	private Long id;
 
-    private Long id;
+	private String name;
 
-    private String name;
+	private String phoneNumber;
 
-    private String phoneNumber;
+	private String emailAddress;
 
-    private String emailAddress;
+	private String password;
 
-    private String password;
+	private UserRole role;
 
-    private String role;
+	private Date birthday;
 
-    private long registrationNumber;
+	private int age;
 
-    private Date birthday;
+	private List<SubjectInfo> subjectInfos;
 
-    private int age;
+	public Long getId() {
+		return id;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+	public String getEmailAddress() {
+		return emailAddress;
+	}
 
-    public String getEmailAddress() {
-        return emailAddress;
-    }
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
 
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public UserRole getRole() {
+		return role;
+	}
 
-    public String getRole() {
-        return role;
-    }
+	public void setRole(UserRole role) {
+		this.role = role;
+	}
 
-    public void setRole(String role) {
-        this.role = role;
-    }
+	public Date getBirthday() {
+		return birthday;
+	}
 
-    public long getRegistrationNumber() {
-        return registrationNumber;
-    }
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
 
-    public void setRegistrationNumber(long registrationNumber) {
-        this.registrationNumber = registrationNumber;
-    }
+	public int getAge() {
+		return age;
+	}
 
-    public Date getBirthday() {
-        return birthday;
-    }
+	public void setAge(int age) {
+		this.age = age;
+	}
 
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
+	public List<SubjectInfo> getSubjectInfos() {
+		return subjectInfos;
+	}
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
+	public void setSubjectInfo(List<SubjectInfo> subjectInfos) {
+		this.subjectInfos = subjectInfos;
+	}
 }

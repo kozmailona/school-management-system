@@ -1,60 +1,50 @@
 package org.fasttrackit.schoolmanagementsystem.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-//@Table(name = "users")
+@Table(name = "users")
 public class UserDetail {
 
 	@Id
-	//@Column(name = "id", unique = true)
+	@Column(name = "id", unique = true)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@NotNull
-	//@Column(name = "name")
+	@Column(name = "name")
 	private String name;
 
 	@NotNull
-	//@Column(name = "phoneNumber", unique = true)
+	@Column(name = "phoneNumber", unique = true)
 	private String phoneNumber;
 
 	@NotNull
-	//@Column(name = "email", unique = true)
+	@Column(name = "email", unique = true)
 	private String emailAddress;
 
+	@NotNull
+	@Column(name = "password", unique = true)
 	private String password;
 
-	private String role;
+	@NotNull
+	@Column(name = "role", unique = true)
+	private UserRole role;
 
 	@NotNull
-	//@Column(name = "regNumber")
-	private long registrationNumber;
-
-	@NotNull
-	//@Column(name = "birthday")
+	@Column(name = "birthday")
 	private Date birthday;
 
 	@NotNull
-	//@Column(name = "age")
+	@Column(name = "age")
 	private int age;
 
-	public UserDetail() {
-		this.id = id;
-		this.name = name;
-		this.phoneNumber = phoneNumber;
-		this.emailAddress = emailAddress;
-		this.password = password;
-		this.role = role;
-		this.registrationNumber = registrationNumber;
-		this.birthday = birthday;
-		this.age = age;
-	}
+	@NotNull
+	@Column(name = "subjectInfos")
+	private List<SubjectInfo> subjectInfos;
 
 	public Long getId() {
 		return id;
@@ -96,22 +86,6 @@ public class UserDetail {
 		this.password = password;
 	}
 
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
-	public long getRegistrationNumber() {
-		return registrationNumber;
-	}
-
-	public void setRegistrationNumber(long registrationNumber) {
-		this.registrationNumber = registrationNumber;
-	}
-
 	public Date getBirthday() {
 		return birthday;
 	}
@@ -128,18 +102,27 @@ public class UserDetail {
 		this.age = age;
 	}
 
+	public UserRole getRole() {
+		return role;
+	}
+
+	public void setRole(UserRole role) {
+		this.role = role;
+	}
+
+	public List<SubjectInfo> getSubjectInfos() {
+		return subjectInfos;
+	}
+
+	public void setSubjectInfo(List<SubjectInfo> subjectInfos) {
+		this.subjectInfos = subjectInfos;
+	}
+
 	@Override
 	public String toString() {
-		return "UserDetail{" +
-				"id=" + id +
-				", name='" + name + '\'' +
-				", phoneNumber='" + phoneNumber + '\'' +
-				", emailAddress='" + emailAddress + '\'' +
-				", password='" + password + '\'' +
-				", role='" + role + '\'' +
-				", registrationNumber=" + registrationNumber +
-				", birthday=" + birthday +
-				", age=" + age +
-				'}';
+		return "UserDetail [id=" + id + ", name=" + name + ", phoneNumber=" + phoneNumber + ", emailAddress="
+				+ emailAddress + ", password=" + password + ", role=" + role + ", birthday=" + birthday + ", age=" + age
+				+ "]";
 	}
+
 }

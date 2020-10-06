@@ -11,11 +11,13 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.fasttrackit.helper.ConverterHelper;
 import org.fasttrackit.schoolmanagementsystem.domain.SubjectInfo;
 import org.fasttrackit.schoolmanagementsystem.domain.SubjectName;
 import org.fasttrackit.schoolmanagementsystem.domain.UserDetail;
+import org.fasttrackit.schoolmanagementsystem.dto.UserDetailDTO;
+import org.fasttrackit.schoolmanagementsystem.persistence.UserDetailRepository;
 import org.fasttrackit.schoolmanagementsystem.service.UserDetailService;
-import org.fasttrackit.schoolmanagementsystem.transfer.user.SaveUserDetailRequest;
 import org.joda.time.DateMidnight;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,8 +26,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class SchoolManagementSystemIT {
 
 	private static final String PHONE_NUMBER = "0754764761";
+
 	private static final String EMAIL_ADDRESS = "kozmailona12@gmail.com";
+
 	private static final Date BIRTHDAY_DATE = new DateMidnight(2007, 2, 2).toDate();
+
+	@Resource
+	private UserDetailRepository userRepository;
+
+	@Resource
+	private ConverterHelper converterHelper;
 
 	@Resource
 	private UserDetailService userDetailService;
@@ -33,13 +43,12 @@ public class SchoolManagementSystemIT {
 	@Test
 	public void createUserDetail_whenValidRequest_thenReturnCreatedUserDetail() {
 
-		SaveUserDetailRequest request = new SaveUserDetailRequest();
-		request.setName("Student");
-		request.setAge(16);
-		request.setGender("female");
-		request.setPhoneNumber(PHONE_NUMBER);
-		request.setBirthday(BIRTHDAY_DATE);
-		request.setEmailAddress(EMAIL_ADDRESS);
+		UserDetailDTO user = new UserDetailDTO();
+		user.setName("Student");
+		user.setAge(16);
+		user.setPhoneNumber(PHONE_NUMBER);
+		user.setBirthday(BIRTHDAY_DATE);
+		user.setEmailAddress(EMAIL_ADDRESS);
 
 		// Create the first object of subjectInfo + set up its values
 		SubjectInfo english = new SubjectInfo();
@@ -59,14 +68,14 @@ public class SchoolManagementSystemIT {
 		subjects.add(biology);
 
 		// Set subjectInfo to the request
-		request.setSubjectInfo(subjects);
+		user.setSubjectInfo(subjects);
 
-		UserDetail userDetail = userDetailService.createUser(request);
+		UserDetail userDetail = userDetailService.createUser(user);
 
 		assertThat(userDetail, notNullValue());
 		assertThat(userDetail.getId(), greaterThan(0L));
-		assertThat(userDetail.getName(), is(request.getName()));
-		assertThat(userDetail.getAge(), is(request.getAge()));
+		assertThat(userDetail.getName(), is(user.getName()));
+		assertThat(userDetail.getAge(), is(user.getAge()));
 
 	}
 

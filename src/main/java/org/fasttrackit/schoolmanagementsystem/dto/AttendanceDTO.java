@@ -1,17 +1,12 @@
-package org.fasttrackit.schoolmanagementsystem.domain;
+package org.fasttrackit.schoolmanagementsystem.dto;
 
 import java.util.Date;
 
-public class Attendance {
+public class AttendanceDTO {
 
     private boolean isPresent;
-    
-    private Date date;
 
-    public Attendance(boolean isPresent, Date date) {
-        this.isPresent = isPresent;
-        this.date = date;
-    }
+    private Date date;
 
     public boolean isPresent() {
         return isPresent;
@@ -29,5 +24,11 @@ public class Attendance {
         this.date = date;
     }
 
+    @Override
+    public String toString() {
+        return "AttendanceDTO{" +
+                "isPresent=" + isPresent +
+                ", date=" + date +
+                '}';
+    }
 }
-

@@ -2,16 +2,16 @@ package org.fasttrackit.schoolmanagementsystem.domain;
 
 public class SubjectInfo {
 
-	private int subjectID;
+	private long subjectId;
 
 	private SubjectName subjectName;
 
-	public int getSubjectID() {
-		return subjectID;
+	public long getSubjectId() {
+		return subjectId;
 	}
 
-	public void setSubjectID(int subjectID) {
-		this.subjectID = subjectID;
+	public void setSubjectId(long subjectId) {
+		this.subjectId = subjectId;
 	}
 
 	public SubjectName getSubjectName() {

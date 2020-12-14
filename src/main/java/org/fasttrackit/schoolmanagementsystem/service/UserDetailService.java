@@ -1,11 +1,6 @@
 package org.fasttrackit.schoolmanagementsystem.service;
 
-import java.util.Date;
-import java.util.Optional;
-
-import org.fasttrackit.helper.ConverterHelper;
 import org.fasttrackit.schoolmanagementsystem.domain.UserDetail;
-import org.fasttrackit.schoolmanagementsystem.dto.UserDetailDTO;
 import org.fasttrackit.schoolmanagementsystem.persistence.UserDetailRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,35 +20,29 @@ public class UserDetailService {
 	@Autowired
 	private UserDetailRepository userRepository;
 
-	@Autowired(required = true)
-	private ConverterHelper converterHelper;
+	public UserDetail createUser(UserDetail userDetail) {
+		LOGGER.info("Creating user {}", userDetail);
+		String firstName = userDetail.getFirstName();
+		Assert.notNull(firstName, "You have to provide your first name");
 
-	public void setConverterHelper(ConverterHelper converterHelper) {
-		this.converterHelper = converterHelper;
-	}
+		String lastName = userDetail.getLastName();
+		Assert.notNull(lastName, "You have to provide your last name");
 
-	public UserDetail createUser(UserDetailDTO userDetailDTO) {
-		LOGGER.info("Creating user {}", userDetailDTO);
-		String name = userDetailDTO.getName();
-		Assert.notNull(name, "You have to provide your name");
-
-		String phoneNumber = userDetailDTO.getPhoneNumber();
+		String phoneNumber = userDetail.getPhoneNumber();
 		Assert.notNull(phoneNumber, "You have to provide your phone number");
 
-		String emailAddress = userDetailDTO.getEmailAddress();
+		String emailAddress = userDetail.getEmail();
 		Assert.notNull(emailAddress, "You have to provide your email address");
 
-		String password = userDetailDTO.getPassword();
+		String password = userDetail.getPassword();
 		Assert.notNull(password, "You have to provide your password");
 
-		Date birthday = userDetailDTO.getBirthday();
-		Assert.notNull(birthday, "You have to provide your birthday");
-
-		int age = userDetailDTO.getAge();
-		Assert.notNull(age, "You have to provide your age");
+		String userName = userDetail.getUserName();
+		Assert.notNull(userName, "No username was provided");
 
 		if (getUserByEmail(emailAddress) == null) {
-			UserDetail user = converterHelper.convertDTOToUser(userDetailDTO, 0);
+			UserDetail user = new UserDetail() {
+			};
 			return userRepository.save(user);
 		}
 		return null;
@@ -65,11 +54,11 @@ public class UserDetailService {
 	 * @param id
 	 * @return
 	 */
-	public UserDetailDTO getUserById(Long id) {
+	public UserDetail getUserById(Long id) {
 		LOGGER.info("Retrieving user with following {} id", id);
 		UserDetail user = userRepository.findUserById(id);
 		Assert.notNull(user, "No such id found in the database");
-		return converterHelper.convertUserToDTO(user);
+		return (user);
 	}
 
 	/**
@@ -78,11 +67,11 @@ public class UserDetailService {
 	 * @param email
 	 * @return
 	 */
-	public UserDetailDTO getUserByEmail(String email) {
+	public UserDetail getUserByEmail(String email) {
 		LOGGER.info("Retrieving user with following {} address", email);
-		UserDetail user = userRepository.findByEmail(email);
+		UserDetail user = userRepository.findUserByEmailAddress(email);
 		if (user != null) {
-			return converterHelper.convertUserToDTO(user);
+			return (user);
 		}
 		return null;
 	}
@@ -95,8 +84,20 @@ public class UserDetailService {
 		return false;
 	}
 
-	public UserDetailDTO updateUser(Long id, UserDetailDTO UserDetailDto) {
-		Optional<UserDetail> user = userRepository.findById(id);
+	public UserDetail updateUser(Long id, UserDetail userDetail) {
+
+		// Username cannot be updated
+		UserDetail user = userRepository.findUserById(id);
+		user.setId(userDetail.getId());
+		user.setFirstName(userDetail.getFirstName());
+		user.setLastName(userDetail.getLastName());
+		user.setPhoneNumber(userDetail.getPhoneNumber());
+		user.setEmail(userDetail.getEmail());
+		user.setPassword(userDetail.getPassword());
+
+		UserDetail savedUser = userRepository.save(user);
+		return (savedUser);
+
 	}
 
 }

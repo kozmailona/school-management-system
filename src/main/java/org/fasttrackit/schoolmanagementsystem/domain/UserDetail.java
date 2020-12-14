@@ -1,49 +1,23 @@
 package org.fasttrackit.schoolmanagementsystem.domain;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.Date;
 import java.util.List;
 
-@Entity
-@Table(name = "users")
-public class UserDetail {
+public abstract class UserDetail {
 
-	@Id
-	@Column(name = "id", unique = true)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotNull
-	@Column(name = "name")
-	private String name;
+	private String firstName;
 
-	@NotNull
-	@Column(name = "phoneNumber", unique = true)
-	private String phoneNumber;
+	private String lastName;
 
-	@NotNull
-	@Column(name = "email", unique = true)
-	private String emailAddress;
+	private String userName;
 
-	@NotNull
-	@Column(name = "password", unique = true)
 	private String password;
 
-	@NotNull
-	@Column(name = "role", unique = true)
-	private UserRole role;
+	private String email;
 
-	@NotNull
-	@Column(name = "birthday")
-	private Date birthday;
+	private String phoneNumber;
 
-	@NotNull
-	@Column(name = "age")
-	private int age;
-
-	@NotNull
-	@Column(name = "subjectInfos")
 	private List<SubjectInfo> subjectInfos;
 
 	public Long getId() {
@@ -54,28 +28,12 @@ public class UserDetail {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-
-	public String getEmailAddress() {
-		return emailAddress;
-	}
-
-	public void setEmailAddress(String emailAddress) {
-		this.emailAddress = emailAddress;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getPassword() {
@@ -86,43 +44,44 @@ public class UserDetail {
 		this.password = password;
 	}
 
-	public Date getBirthday() {
-		return birthday;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public int getAge() {
-		return age;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
-	}
-
-	public UserRole getRole() {
-		return role;
-	}
-
-	public void setRole(UserRole role) {
-		this.role = role;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 	public List<SubjectInfo> getSubjectInfos() {
 		return subjectInfos;
 	}
 
-	public void setSubjectInfo(List<SubjectInfo> subjectInfos) {
+	public void setSubjectInfos(List<SubjectInfo> subjectInfos) {
 		this.subjectInfos = subjectInfos;
 	}
 
-	@Override
-	public String toString() {
-		return "UserDetail [id=" + id + ", name=" + name + ", phoneNumber=" + phoneNumber + ", emailAddress="
-				+ emailAddress + ", password=" + password + ", role=" + role + ", birthday=" + birthday + ", age=" + age
-				+ "]";
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 }

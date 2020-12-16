@@ -1,8 +1,5 @@
 package org.fasttrackit.schoolmanagementsystem.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Entity;
 
 @Entity
@@ -12,9 +9,9 @@ public class Grade {
 
 	private int mark;
 
-	private String nameOfTeacher;
+	private Teacher teacher;
 
-	private List<Register> registers = new ArrayList<>();
+	private Register register;
 
 	public Long getId() {
 		return id;
@@ -32,20 +29,20 @@ public class Grade {
 		this.mark = mark;
 	}
 
-	public String getNameOfTeacher() {
-		return nameOfTeacher;
+	public Teacher getTeacher() {
+		return teacher;
 	}
 
-	public void setNameOfTeacher(String nameOfTeacher) {
-		this.nameOfTeacher = nameOfTeacher;
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
 	}
 
-	public List<Register> getRegisters() {
-		return registers;
+	public Register getRegister() {
+		return register;
 	}
 
-	public void setRegisters(List<Register> registers) {
-		this.registers = registers;
+	public void setRegister(Register register) {
+		this.register = register;
 	}
 
 }

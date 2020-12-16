@@ -50,11 +50,9 @@ public class Register {
 
 	public void addMarkToRegister(Grade grade) {
 		grades.add(grade);
-		grade.getRegisters().add(this);
 	}
 
 	public void removeMarkFromRegister(Grade grade) {
 		grades.remove(grade);
-		grade.getRegisters().remove(this);
 	}
 }

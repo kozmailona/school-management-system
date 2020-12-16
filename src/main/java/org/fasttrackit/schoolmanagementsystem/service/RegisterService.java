@@ -4,7 +4,11 @@ import org.fasttrackit.schoolmanagementsystem.domain.Grade;
 import org.fasttrackit.schoolmanagementsystem.domain.Register;
 import org.fasttrackit.schoolmanagementsystem.domain.Teacher;
 import org.fasttrackit.schoolmanagementsystem.dto.RegisterDTO;
+import org.fasttrackit.schoolmanagementsystem.exception.MarkNotFoundException;
+import org.fasttrackit.schoolmanagementsystem.exception.ResourceNotFoundException;
+import org.fasttrackit.schoolmanagementsystem.persistence.GradeRepository;
 import org.fasttrackit.schoolmanagementsystem.persistence.RegisterRepository;
+import org.fasttrackit.schoolmanagementsystem.persistence.TeacherRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +21,10 @@ public class RegisterService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(RegisterService.class);
 
 	private final RegisterRepository registerRepository;
+
+	private GradeRepository gradeRepository;
+
+	private TeacherRepository teacherRepository;
 
 	private final GradeService gradeService;
 
@@ -31,7 +39,7 @@ public class RegisterService {
 	}
 
 	@Transactional
-	public void addGrade(RegisterDTO registerDTO) {
+	public void addGrade(RegisterDTO registerDTO, int mark) {
 		LOGGER.info("Adding mark to the register");
 		Register markRegister = registerRepository.findById(registerDTO.getId()).orElse(new Register());
 
@@ -40,25 +48,40 @@ public class RegisterService {
 			markRegister.setTeacher(teacher);
 		}
 
-		Grade grade = gradeService.getGrade(registerDTO.getId());
+		// create a new grade
+		Grade grade = new Grade();
+		grade.setMark(mark);
+		grade.setRegister(markRegister);
+		grade.setTeacher(markRegister.getTeacher());
+
+		// Add grade to the register
 		markRegister.addMarkToRegister(grade);
 
+		// save it to the db
 		registerRepository.save(markRegister);
 	}
 
 	@Transactional
-	public void deleteGrade(RegisterDTO registerDTO) {
+	public void deleteGrade(RegisterDTO registerDTO, Grade grade) throws MarkNotFoundException {
 		LOGGER.info("Removing mark from the register");
-		Register markRegister = registerRepository.findById(registerDTO.getId()).orElse(new Register());
+		Register markRegister = registerRepository.findById(registerDTO.getId())
+				.orElseThrow(() -> new MarkNotFoundException("Mark with id " + grade.getId() + "could not be found"));
 
-		if (markRegister.getTeacher() == null) {
-			Teacher teacher = teacherService.getUser(registerDTO.getId());
-			markRegister.setTeacher(teacher);
-		}
-
-		Grade grade = gradeService.getGrade(registerDTO.getId());
 		markRegister.removeMarkFromRegister(grade);
 
 		registerRepository.save(markRegister);
+	}
+
+	public Grade getGrade(Long id) {
+		LOGGER.info("Retrieving grade {}", id);
+		return gradeRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Grade " + id + " does not exist"));
+	}
+
+	public Teacher getUser(long id) {
+		LOGGER.info("Retrieving teacher {}", id);
+
+		return teacherRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Teacher " + id + " does not exist"));
 	}
 }

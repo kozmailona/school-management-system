@@ -1,9 +1,12 @@
 package org.fasttrackit.schoolmanagementsystem.service;
 
+import java.util.List;
+
 import org.fasttrackit.schoolmanagementsystem.domain.Grade;
 import org.fasttrackit.schoolmanagementsystem.domain.Register;
 import org.fasttrackit.schoolmanagementsystem.domain.Teacher;
 import org.fasttrackit.schoolmanagementsystem.dto.RegisterDTO;
+import org.fasttrackit.schoolmanagementsystem.exception.EmptyRegisterException;
 import org.fasttrackit.schoolmanagementsystem.exception.MarkNotFoundException;
 import org.fasttrackit.schoolmanagementsystem.exception.ResourceNotFoundException;
 import org.fasttrackit.schoolmanagementsystem.persistence.GradeRepository;
@@ -26,15 +29,11 @@ public class RegisterService {
 
 	private TeacherRepository teacherRepository;
 
-	private final GradeService gradeService;
-
 	private final TeacherService teacherService;
 
 	@Autowired
-	public RegisterService(RegisterRepository registerRepository, GradeService gradeService,
-			TeacherService teacherService) {
+	public RegisterService(RegisterRepository registerRepository, TeacherService teacherService) {
 		this.registerRepository = registerRepository;
-		this.gradeService = gradeService;
 		this.teacherService = teacherService;
 	}
 
@@ -70,6 +69,16 @@ public class RegisterService {
 		markRegister.removeMarkFromRegister(grade);
 
 		registerRepository.save(markRegister);
+	}
+
+	@Transactional
+	public List<Grade> findAllGradesByStudent(String userName) throws EmptyRegisterException {
+		LOGGER.info("Retrieving all marks for user {} from the register", userName);
+		List<Grade> grades = registerRepository.findAllGradesByStudent(userName);
+		if (grades.isEmpty()) {
+			throw new EmptyRegisterException("The register for " + userName + " is empty.");
+		}
+		return grades;
 	}
 
 	public Grade getGrade(Long id) {

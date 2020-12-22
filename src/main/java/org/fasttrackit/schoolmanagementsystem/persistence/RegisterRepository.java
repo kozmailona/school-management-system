@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RegisterRepository extends JpaRepository<Register, Long> {
 
-	List<Grade> findAllGradesByStudent(String userName);
+    List<Grade> findAllGradesByStudent(String username);
 
 }

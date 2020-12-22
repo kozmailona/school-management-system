@@ -4,12 +4,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class EmptyRegisterException extends Exception {
+public class UserNotFoundException extends Exception {
 
-    private static final long serialVersionUID = -4982841983528229362L;
+    private static final long serialVersionUID = -7275671996012007456L;
 
-    public EmptyRegisterException(String message) {
+    public UserNotFoundException(String message) {
         super(message);
     }
-
 }
